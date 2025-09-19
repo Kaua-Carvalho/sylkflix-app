@@ -107,7 +107,8 @@ VITE_FIREBASE_APP_ID=seu-app-id
 - Email: kauarcarvalho@gmail.com
 
 *Stênio Siqueira*
-- Github: [@StenioSiq] (https://github.com/StenioSiq)
-- Linkedin: [Stênio Siqueira] (https://www.linkedin.com/in/stenio-siqueira/)
+- Github: [@StenioSiq](https://github.com/StenioSiq)
+- Linkedin: [Stênio Siqueira](https://www.linkedin.com/in/stenio-siqueira/)
 - Email: steniosqr@gmail.com
+
 ---
