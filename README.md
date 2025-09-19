@@ -85,10 +85,13 @@ Crie um arquivo `.env` na raiz do projeto baseado no `.env.example`:
 # The Movie Database API
 VITE_TMDB_API_KEY=sua_chave_api_tmdb
 
-# Firebase Configuration
-VITE_FIREBASE_API_KEY=sua_chave_firebase
+# Configuração do Firebase
+VITE_FIREBASE_API_KEY=sua_chave_api_firebase
 VITE_FIREBASE_AUTH_DOMAIN=seu-projeto.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID# SylkFlix 🎬
+VITE_FIREBASE_PROJECT_ID=seu-projeto-id
+VITE_FIREBASE_STORAGE_BUCKET=seu-projeto.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=seu-sender-id
+VITE_FIREBASE_APP_ID=seu-app-id
 ```
 
 ## 👨‍💻 Desenvolvedores
@@ -103,4 +106,8 @@ VITE_FIREBASE_PROJECT_ID# SylkFlix 🎬
 - Linkedin: [Kauã Ribeiro Carvalho](https://www.linkedin.com/in/kauã-ribeiro-carvalho/)
 - Email: kauarcarvalho@gmail.com
 
+*Stênio Siqueira*
+- Github: [@StenioSiq] https://github.com/StenioSiq
+- Linkedin: [Stênio Siqueira] https://www.linkedin.com/in/stenio-siqueira/
+- Email: steniosqr@gmail.com
 ---
