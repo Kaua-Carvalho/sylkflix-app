@@ -88,88 +88,19 @@ VITE_TMDB_API_KEY=sua_chave_api_tmdb
 # Firebase Configuration
 VITE_FIREBASE_API_KEY=sua_chave_firebase
 VITE_FIREBASE_AUTH_DOMAIN=seu-projeto.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID# MovieFlix 🎬
-
-## 📁 Estrutura do Projeto
-
+VITE_FIREBASE_PROJECT_ID# SylkFlix 🎬
 ```
-movieflix-app/
-├── public/
-│   ├── favicon.ico
-│   ├── placeholder-backdrop.jpg
-│   └── placeholder-movie.jpg
-├── src/
-│   ├── components/
-│   │   ├── Header/
-│   │   │   └── Header.jsx
-│   │   ├── MovieCard/
-│   │   │   └── MovieCard.jsx
-│   │   └── LoadingSpinner/
-│   │       └── LoadingSpinner.jsx
-│   ├── contexts/
-│   │   └── AuthContext.jsx
-│   ├── pages/
-│   │   ├── Home/
-│   │   │   └── Home.jsx
-│   │   ├── MovieDetails/
-│   │   │   └── MovieDetails.jsx
-│   │   ├── Login/
-│   │   │   └── Login.jsx
-│   │   ├── Register/
-│   │   │   └── Register.jsx
-│   │   ├── Profile/
-│   │   │   └── Profile.jsx
-│   │   └── NotFound/
-│   │       └── NotFound.jsx
-│   ├── services/
-│   │   ├── firebase.js
-│   │   └── tmdbApi.js
-│   ├── App.jsx
-│   └── main.jsx
-├── package.json
-├── vite.config.js
-├── .env.example
-├──  README.md
-└── index.html
-```
-
-## 🎯 Funcionalidades Detalhadas
-
-### 🏠 Página Inicial
-- **Filtros por categoria**: Populares, Em Alta, Mais Bem Avaliados, Lançamentos
-- **Busca em tempo real** por título do filme
-- **Filtro por gênero** com seleção múltipla
-- **Paginação** para navegar entre páginas de resultados
-- **Cards responsivos** com informações do filme e ratings
-
-### 🎬 Detalhes do Filme
-- **Informações completas**: sinopse, diretor, elenco, duração, orçamento
-- **Trailer integrado** do YouTube (quando disponível)
-- **Galeria de imagens** com poster e backdrop
-- **Filmes similares** para descoberta de conteúdo
-- **Rating e avaliações** dos usuários
-
-### 🔐 Sistema de Autenticação
-- **Cadastro de usuários** com validação de formulário
-- **Login seguro** com Firebase Authentication
-- **Rotas protegidas** para usuários autenticados
-- **Persistência de sessão** entre reloads
-- **Tratamento de erros** específicos do Firebase
-
-### 👤 Perfil do Usuário
-- **Edição de informações** pessoais
-- **Estatísticas da conta** (data de criação, último login)
-- **Gerenciamento de sessão** (logout)
-
-## 📝 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
 
 ## 👨‍💻 Desenvolvedores
 
-**Luís Gustavo**
+*Luís Gustavo*
 - GitHub: [@lgalvesz](https://github.com/lgalvesz)
 - LinkedIn: [Luís Gustavo](https://www.linkedin.com/in/luisgustavoalves/)
 - Email: luisgalvessilva@gmail.com
+
+*Kauã Carvalho*
+- Github: [@Kaua-Carvalho](https://github.com/Kaua-Carvalho)
+- Linkedin: [Kauã Ribeiro Carvalho](https://www.linkedin.com/in/kauã-ribeiro-carvalho/)
+- Email: kauarcarvalho@gmail.com
 
 ---
