@@ -4,8 +4,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Box, Typography } from '@mui/material';
 
-// Adicionar o AuthContext
 import { AuthProvider } from './contexts/AuthContext';
+import Header from './components/Header/Header';
 
 const theme = createTheme({
   palette: {
@@ -17,13 +17,13 @@ const theme = createTheme({
 
 const TestHome = () => (
   <Box sx={{ p: 4, textAlign: 'center' }}>
-    <Typography variant="h2" color="white">Home - Com AuthContext</Typography>
+    <Typography variant="h2" color="white">Home - Com Header</Typography>
   </Box>
 );
 
 const TestLogin = () => (
   <Box sx={{ p: 4, textAlign: 'center' }}>
-    <Typography variant="h2" color="white">Login - Com AuthContext</Typography>
+    <Typography variant="h2" color="white">Login - Com Header</Typography>
   </Box>
 );
 
@@ -34,11 +34,14 @@ function App() {
       <AuthProvider>
         <Router>
           <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
-            <Routes>
-              <Route path="/" element={<TestHome />} />
-              <Route path="/login" element={<TestLogin />} />
-              <Route path="*" element={<TestHome />} />
-            </Routes>
+            <Header />
+            <Box sx={{ pt: 8 }}>
+              <Routes>
+                <Route path="/" element={<TestHome />} />
+                <Route path="/login" element={<TestLogin />} />
+                <Route path="*" element={<TestHome />} />
+              </Routes>
+            </Box>
           </Box>
         </Router>
       </AuthProvider>
