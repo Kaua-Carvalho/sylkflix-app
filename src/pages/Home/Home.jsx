@@ -1,63 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, Box, Alert } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import { movieApi } from '../../services/tmdbApi';
 
 const Home = () => {
-  const [genres, setGenres] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    const loadGenres = async () => {
+    console.log('useEffect executando...');
+    
+    const loadData = async () => {
       try {
+        console.log('Chamando movieApi.getGenres()...');
         const response = await movieApi.getGenres();
-        if (response?.data?.genres) {
-          setGenres(response.data.genres);
-        }
+        console.log('Resposta recebida:', response);
+        setData(response);
       } catch (err) {
-        console.error('Erro ao carregar gêneros:', err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
+        console.error('Erro:', err);
+        setData({ error: err.message });
       }
     };
 
-    loadGenres();
+    loadData();
   }, []);
-
-  if (loading) {
-    return (
-      <Container maxWidth="xl" sx={{ py: 4 }}>
-        <Typography variant="h4" sx={{ color: 'white', textAlign: 'center' }}>
-          Carregando...
-        </Typography>
-      </Container>
-    );
-  }
 
   return (
     <Container maxWidth="xl" sx={{ py: 4 }}>
-      <Typography variant="h3" sx={{ color: 'white', textAlign: 'center', mb: 3 }}>
-        SylkFlix - API Funcionando!
+      <Typography variant="h3" sx={{ color: 'white', textAlign: 'center' }}>
+        Home - Teste useEffect
       </Typography>
       
-      {error && (
-        <Alert severity="error" sx={{ mb: 3 }}>
-          Erro: {error}
-        </Alert>
-      )}
-
-      <Box sx={{ color: 'white', textAlign: 'center' }}>
-        <Typography variant="h5" gutterBottom>
-          Gêneros carregados: {genres.length}
-        </Typography>
-        
-        {genres.slice(0, 5).map(genre => (
-          <Typography key={genre.id} variant="body1">
-            - {genre.name}
-          </Typography>
-        ))}
-      </Box>
+      <Typography sx={{ color: 'white', textAlign: 'center', mt: 2 }}>
+        Data: {data ? 'Carregado' : 'Carregando...'}
+      </Typography>
     </Container>
   );
 };
