@@ -2,10 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 
 import { AuthProvider } from './contexts/AuthContext';
 import Header from './components/Header/Header';
+import Home from './pages/Home/Home';
 
 const theme = createTheme({
   palette: {
@@ -15,15 +16,9 @@ const theme = createTheme({
   },
 });
 
-const TestHome = () => (
-  <Box sx={{ p: 4, textAlign: 'center' }}>
-    <Typography variant="h2" color="white">Home - Com Header</Typography>
-  </Box>
-);
-
 const TestLogin = () => (
-  <Box sx={{ p: 4, textAlign: 'center' }}>
-    <Typography variant="h2" color="white">Login - Com Header</Typography>
+  <Box sx={{ p: 4, textAlign: 'center', color: 'white' }}>
+    <h2>Login - Teste</h2>
   </Box>
 );
 
@@ -37,9 +32,9 @@ function App() {
             <Header />
             <Box sx={{ pt: 8 }}>
               <Routes>
-                <Route path="/" element={<TestHome />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/login" element={<TestLogin />} />
-                <Route path="*" element={<TestHome />} />
+                <Route path="*" element={<Home />} />
               </Routes>
             </Box>
           </Box>
