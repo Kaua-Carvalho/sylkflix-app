@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <Container maxWidth="xl" sx={{ py: 4 }}>
       <Typography variant="h3" sx={{ color: 'white', textAlign: 'center' }}>
-        Home - Com tmdbApi Import
+        Home - Com tmdbApi Import (Corrigido)
       </Typography>
     </Container>
   );
