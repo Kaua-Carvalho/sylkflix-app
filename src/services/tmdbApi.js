@@ -3,44 +3,47 @@ import axios from 'axios';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 
-const getApiKey = () => {
-  if (typeof import.meta !== 'undefined' && import.meta.env) {
-    return import.meta.env.VITE_TMDB_API_KEY;
-  }
-  return null;
+const createTmdbApi = () => {
+  const API_KEY = import.meta.env?.VITE_TMDB_API_KEY;
+  
+  return axios.create({
+    baseURL: BASE_URL,
+    params: {
+      api_key: API_KEY,
+      language: 'pt-BR',
+    },
+  });
 };
 
-const API_KEY = getApiKey();
-
-const tmdbApi = axios.create({
-  baseURL: BASE_URL,
-  params: {
-    api_key: API_KEY,
-    language: 'pt-BR',
-  },
-});
-
-tmdbApi.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    console.error('API Error:', error);
-    return Promise.reject(error);
+let tmdbApi = null;
+const getTmdbApi = () => {
+  if (!tmdbApi) {
+    tmdbApi = createTmdbApi();
+    
+    tmdbApi.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        console.error('API Error:', error);
+        return Promise.reject(error);
+      }
+    );
   }
-);
+  return tmdbApi;
+};
 
 export const movieApi = {
   getPopularMovies: (page = 1) => {
-    return tmdbApi.get('/movie/popular', {
+    return getTmdbApi().get('/movie/popular', {
       params: { page }
     });
   },
 
   getTrendingMovies: (timeWindow = 'day') => {
-    return tmdbApi.get(`/trending/movie/${timeWindow}`);
+    return getTmdbApi().get(`/trending/movie/${timeWindow}`);
   },
 
   getMoviesByGenre: (genreId, page = 1) => {
-    return tmdbApi.get('/discover/movie', {
+    return getTmdbApi().get('/discover/movie', {
       params: {
         with_genres: genreId,
         page
@@ -49,7 +52,7 @@ export const movieApi = {
   },
 
   getMovieDetails: (movieId) => {
-    return tmdbApi.get(`/movie/${movieId}`, {
+    return getTmdbApi().get(`/movie/${movieId}`, {
       params: {
         append_to_response: 'videos,credits,similar'
       }
@@ -57,7 +60,7 @@ export const movieApi = {
   },
 
   searchMovies: (query, page = 1) => {
-    return tmdbApi.get('/search/movie', {
+    return getTmdbApi().get('/search/movie', {
       params: {
         query,
         page
@@ -66,23 +69,23 @@ export const movieApi = {
   },
 
   getGenres: () => {
-    return tmdbApi.get('/genre/movie/list');
+    return getTmdbApi().get('/genre/movie/list');
   },
 
   getTopRatedMovies: (page = 1) => {
-    return tmdbApi.get('/movie/top_rated', {
+    return getTmdbApi().get('/movie/top_rated', {
       params: { page }
     });
   },
 
   getUpcomingMovies: (page = 1) => {
-    return tmdbApi.get('/movie/upcoming', {
+    return getTmdbApi().get('/movie/upcoming', {
       params: { page }
     });
   },
 
   getNowPlayingMovies: (page = 1) => {
-    return tmdbApi.get('/movie/now_playing', {
+    return getTmdbApi().get('/movie/now_playing', {
       params: { page }
     });
   }
@@ -119,4 +122,4 @@ export const formatRuntime = (minutes) => {
   return `${hours}h ${mins}min`;
 };
 
-export default tmdbApi;
+export default getTmdbApi;
