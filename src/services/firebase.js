@@ -1,6 +1,13 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
+// Debug temporário
+console.log('Firebase config check:', {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY ? 'Found' : 'Missing',
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN ? 'Found' : 'Missing',
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID ? 'Found' : 'Missing'
+});
+
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
