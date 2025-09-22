@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 const BASE_URL = 'https://api.themoviedb.org/3';
-const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY || 'demo-key';
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 
-console.log('TMDB API KEY:', API_KEY ? 'Found' : 'Missing');
+console.log('TMDB API KEY:', API_KEY !== 'demo-key' ? 'Found' : 'Missing');
 console.log('Firebase API KEY:', import.meta.env.VITE_FIREBASE_API_KEY ? 'Found' : 'Missing');
 
 const tmdbApi = axios.create({
