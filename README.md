@@ -3,9 +3,9 @@
 <br>
 <p align="center">
   <img src="public/134431788.jpg" width="100">
+  <img src="public/169946056.jpg" width="100">
+  <img src="public/138880659.jpg" width="100">
   <img src="public/159480669.jpg" width="100">
-  <img src="/public/138880659.jpg" width="100">
-  <img src="/public/169946056.jpg" width="100">
 </p>
 
 <p align="center">S Y L K</p>
