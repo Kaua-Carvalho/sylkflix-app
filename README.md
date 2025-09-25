@@ -1,5 +1,16 @@
 # SylkFlix 🎬
 
+<br>
+<p align="center">
+  <img src="views/public/icons/159480669.jpg" width="100">
+  <img src="views/public/icons/169946056.jpg" width="100">
+  <img src="views/public/icons/138880659.jpg" width="100">
+  <img src="views/public/icons/134431788.jpg" width="100">
+</p>
+
+<p align="center">S Y L K</p>
+
+
 Uma aplicação web moderna para descobrir e explorar filmes, desenvolvida com React e integração com The Movie Database (TMDB) API.
 
 ## 🚀 Demo
@@ -77,7 +88,13 @@ npm install
 yarn install
 ```
 
-3. **Configure as variáveis de ambiente**
+3. **Configure o Firebase**
+- Acesse https://console.firebase.google.com/ e crie um novo projeto
+- Adicione um app web ao projeto
+- Ative a autenticação por Email/Senha em Authentication → Métodos de login.
+- Configure o domínio autorizado para desenvolvimento (localhost) e produção (domínio do Vercel).
+
+4. **Configure as variáveis de ambiente**
 
 Crie um arquivo `.env` na raiz do projeto baseado no `.env.example`:
 
