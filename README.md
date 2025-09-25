@@ -2,10 +2,10 @@
 
 <br>
 <p align="center">
-  <img src="views/public/icons/159480669.jpg" width="100">
-  <img src="views/public/icons/169946056.jpg" width="100">
-  <img src="views/public/icons/138880659.jpg" width="100">
-  <img src="views/public/icons/134431788.jpg" width="100">
+  <img src="public/134431788.jpg" width="100">
+  <img src="public/159480669.jpg" width="100">
+  <img src="/public/138880659.jpg" width="100">
+  <img src="/public/169946056.jpg" width="100">
 </p>
 
 <p align="center">S Y L K</p>
