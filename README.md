@@ -128,9 +128,9 @@ VITE_FIREBASE_APP_ID=seu-app-id
 - Linkedin: [Stênio Siqueira](https://www.linkedin.com/in/stenio-siqueira/)
 - Email: steniosqr@gmail.com
 
-*Yago Toledo*
+*Yago Henrique*
 - Github: [@YagoHT](https://github.com/YagoHT)
-- Linkedin: [Yago Toledo](https://www.linkedin.com/in/yago-henrique-toledo-del-pino-vieira/)
+- Linkedin: [Yago Henrique](https://www.linkedin.com/in/yago-henrique-toledo-del-pino-vieira/)
 - Email: yagoh686@gmail.com
 
 ---

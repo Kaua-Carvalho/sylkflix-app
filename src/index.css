@@ -1,4 +1,4 @@
-/* Global Styles */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -18,7 +18,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Scrollbar Styling */
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -36,14 +36,14 @@ html {
   background: #f40612;
 }
 
-/* Custom focus styles */
+
 .MuiButton-root:focus-visible,
 .MuiIconButton-root:focus-visible {
   outline: 2px solid #e50914;
   outline-offset: 2px;
 }
 
-/* Loading animations */
+
 @keyframes pulse {
   0% {
     opacity: 1;
@@ -60,14 +60,14 @@ html {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Smooth transitions */
+
 * {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
 
-/* Image loading fallback */
+
 img {
   max-width: 100%;
   height: auto;
