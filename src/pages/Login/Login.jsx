@@ -40,35 +40,27 @@ const Login = () => {
     setError('');
 
     try {
-      await login(data.email, data.password);
+      await login(data.email, data.senha); // ✅ Já estava correto
       navigate('/');
     } catch (err) {
       console.error('Login error:', err);
       
-      switch (err.code) {
-        case 'auth/user-not-found':
-          setError('Usuário não encontrado. Verifique seu email ou cadastre-se.');
-          break;
-        case 'auth/wrong-password':
-          setError('Senha incorreta. Tente novamente.');
-          break;
-        case 'auth/invalid-email':
-          setError('Formato de email inválido.');
-          break;
-        case 'auth/user-disabled':
-          setError('Esta conta foi desabilitada. Entre em contato com o suporte.');
-          break;
-        case 'auth/too-many-requests':
-          setError('Muitas tentativas de login. Tente novamente mais tarde.');
-          break;
-        case 'auth/network-request-failed':
-          setError('Erro de conexão. Verifique sua internet.');
-          break;
-        case 'auth/invalid-credential':
-          setError('Credenciais inválidas. Verifique email e senha.');
-          break;
-        default:
+      if (err.response) {
+        const status = err.response.status;
+        const message = err.response.data;
+        
+        if (status === 401) {
+          setError('Email ou senha incorretos.');
+        } else if (typeof message === 'object' && !Array.isArray(message)) {
+          const errorMessages = Object.values(message).join(', ');
+          setError(errorMessages);
+        } else if (typeof message === 'string') {
+          setError(message);
+        } else {
           setError('Erro ao fazer login. Tente novamente.');
+        }
+      } else {
+        setError('Erro de conexão. Verifique sua internet.');
       }
     } finally {
       setLoading(false);
@@ -213,22 +205,23 @@ const Login = () => {
               }}
             />
 
+            {/* ✅ CORRIGIDO: id="senha" */}
             <TextField
               fullWidth
-              id="password"
+              id="senha"
               label="Senha"
               type={showPassword ? 'text' : 'password'}
               autoComplete="current-password"
               margin="normal"
-              {...register('password', {
+              {...register('senha', {
                 required: 'Senha é obrigatória',
                 minLength: {
                   value: 6,
                   message: 'Senha deve ter pelo menos 6 caracteres',
                 },
               })}
-              error={!!errors.password}
-              helperText={errors.password?.message}
+              error={!!errors.senha}
+              helperText={errors.senha?.message}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -354,23 +347,6 @@ const Login = () => {
                 ← Voltar para a página inicial
               </Link>
             </Box>
-          </Box>
-
-          <Box
-            sx={{
-              mt: 4,
-              p: 2,
-              bgcolor: 'rgba(229, 9, 20, 0.1)',
-              borderRadius: 2,
-              border: '1px solid rgba(229, 9, 20, 0.2)',
-            }}
-          >
-            <Typography variant="body2" color="primary.main" gutterBottom fontWeight="bold">
-              💡 Dica de Desenvolvimento:
-            </Typography>
-            <Typography variant="caption" color="text.secondary" display="block">
-              Para testar, crie uma conta primeiro ou configure credenciais de teste no Firebase.
-            </Typography>
           </Box>
         </Paper>
       </Container>

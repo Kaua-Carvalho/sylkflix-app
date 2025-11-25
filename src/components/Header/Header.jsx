@@ -187,7 +187,7 @@ const Header = ({ onSearch }) => {
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             {user ? (
               <>
-                <Typography variant="body2" sx={{ mr: 2, display: { xs: 'none', md: 'block' } }}>
+                <Typography variant="body2" sx={{ mr: 1, display: { xs: 'none', md: 'block' } }}>
                   Olá, {user.displayName || user.email}
                 </Typography>
                 <IconButton
@@ -199,11 +199,12 @@ const Header = ({ onSearch }) => {
                   onClick={handleProfileMenuOpen}
                   color="inherit"
                 >
-                  {user.photoURL ? (
-                    <Avatar src={user.photoURL} sx={{ width: 32, height: 32 }} />
-                  ) : (
-                    <AccountCircle />
-                  )}
+                  <Avatar
+                    src={user && user.profilePicture ? `/ProfilePictures/${user.profilePicture}.jpg` : undefined}
+                    sx={{ width: 50, height: 50 }}
+                  >
+                    {!user?.profilePicture && <AccountCircle />}
+                  </Avatar>
                 </IconButton>
               </>
             ) : (

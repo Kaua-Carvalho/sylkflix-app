@@ -177,7 +177,7 @@ const Home = () => {
             WebkitTextFillColor: 'transparent',
           }}
         >
-          Descubra Seus Próximos Filmes Favoritos
+          Descubra Seus Próximos Filmes Assistidos
         </Typography>
 
         <Paper elevation={2} sx={{ p: 3, mb: 4, bgcolor: 'background.paper' }}>

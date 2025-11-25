@@ -72,3 +72,149 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+.footer-sylkflix {
+  background-color: #0f0f0f;
+  color: #8a8a8a;
+  text-align: center;
+  padding: 0.8rem;
+  margin-top: auto;
+  border-top: 1px solid #2d2d2d;
+  width: 100%;
+}
+
+.footer-copyright {
+  margin: 0 0 1rem 0 !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  color: #8a8a8a !important;
+}
+
+/* Seção da equipe */
+.team-section {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-2px);
+}
+
+.team-member img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #2d2d2d;
+  transition: all 0.3s ease;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.team-member a {
+  display: block;
+  text-decoration: none;
+}
+
+.team-member img:hover {
+  border-color: #e50914;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
+}
+
+.team-member p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #b0b0b0;
+  font-weight: 500;
+}
+
+/* Nomes com transição inicial/completo - VERSÃO SEQUENCIAL */
+.member-name {
+  text-align: center;
+  min-height: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  min-width: 120px; /* Garante espaço para o nome completo */
+}
+
+.member-name .initial,
+.member-name .full-name {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.member-name .initial {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition-delay: 0s;
+  font-weight: 600;
+  color: #b0b0b0;
+}
+
+.member-name .full-name {
+  opacity: 0;
+  transform: translateX(-50%) scale(0.9);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition-delay: 0s;
+  font-weight: 500;
+  color: #e0e0e0;
+}
+
+/* Estados de hover - transição sequencial */
+.team-member:hover .member-name .initial {
+  opacity: 0;
+  transform: translateX(-50%) scale(0.8);
+  transition-delay: 0s; /* A inicial some imediatamente */
+}
+
+.team-member:hover .member-name .full-name {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+  transition-delay: 0.25s; /* O nome completo aparece depois de 0.25s */
+}
+
+/* Transição quando hover no footer inteiro */
+.footer-sylkflix:hover .member-name .initial {
+  opacity: 0;
+  transform: translateX(-50%) scale(0.8);
+  transition-delay: 0s;
+}
+
+.footer-sylkflix:hover .member-name .full-name {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+  transition-delay: 0.25s;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .team-section {
+    gap: 1.5rem;
+  }
+  
+  .team-member img {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .member-name {
+    min-width: 100px;
+  }
+}

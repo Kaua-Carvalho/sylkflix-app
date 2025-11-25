@@ -14,7 +14,6 @@ import {
 import {
   Visibility,
   VisibilityOff,
-  Movie as MovieIcon,
   PersonAdd as PersonAddIcon,
 } from '@mui/icons-material';
 import { useForm } from 'react-hook-form';
@@ -35,34 +34,31 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const password = watch('password');
+  const senha = watch('senha');
 
   const onSubmit = async (data) => {
     setLoading(true);
     setError('');
 
     try {
-      await registerUser(data.email, data.password, data.displayName);
+      await registerUser(data.nome, data.email, data.senha);
       navigate('/');
     } catch (err) {
       console.error('Registration error:', err);
-      
-      // Handle specific Firebase errors
-      switch (err.code) {
-        case 'auth/email-already-in-use':
-          setError('Este email já está em uso.');
-          break;
-        case 'auth/invalid-email':
-          setError('Email inválido.');
-          break;
-        case 'auth/weak-password':
-          setError('Senha muito fraca. Use pelo menos 6 caracteres.');
-          break;
-        case 'auth/operation-not-allowed':
-          setError('Operação não permitida.');
-          break;
-        default:
+
+      if (err.response) {
+        const message = err.response.data;
+
+        if (typeof message === 'object' && !Array.isArray(message)) {
+          const errorMessages = Object.values(message).join(', ');
+          setError(errorMessages);
+        } else if (typeof message === 'string') {
+          setError(message);
+        } else {
           setError('Erro ao criar conta. Tente novamente.');
+        }
+      } else {
+        setError('Erro de conexão. Verifique sua internet.');
       }
     } finally {
       setLoading(false);
@@ -98,7 +94,6 @@ const Register = () => {
             border: '1px solid #333',
           }}
         >
-          {/* Header */}
           <Box sx={{ textAlign: 'center', mb: 4 }}>
             <PersonAddIcon
               sx={{
@@ -130,32 +125,35 @@ const Register = () => {
             </Typography>
           </Box>
 
-          {/* Error Alert */}
           {error && (
             <Alert severity="error" sx={{ mb: 3 }}>
               {error}
             </Alert>
           )}
 
-          {/* Register Form */}
           <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
+            {/* Nome com limite de 3 a 20 caracteres */}
             <TextField
               fullWidth
-              id="displayName"
+              id="nome"
               label="Nome Completo"
               type="text"
               autoComplete="name"
               autoFocus
               margin="normal"
-              {...register('displayName', {
+              {...register('nome', {
                 required: 'Nome é obrigatório',
                 minLength: {
-                  value: 2,
-                  message: 'Nome deve ter pelo menos 2 caracteres',
+                  value: 3,
+                  message: 'Nome deve ter pelo menos 3 caracteres',
+                },
+                maxLength: {
+                  value: 20,
+                  message: 'Nome deve ter no máximo 20 caracteres',
                 },
               })}
-              error={!!errors.displayName}
-              helperText={errors.displayName?.message}
+              error={!!errors.nome}
+              helperText={errors.nome?.message}
               sx={{
                 '& .MuiOutlinedInput-root': {
                   '& fieldset': {
@@ -198,24 +196,20 @@ const Register = () => {
 
             <TextField
               fullWidth
-              id="password"
+              id="senha"
               label="Senha"
               type={showPassword ? 'text' : 'password'}
               autoComplete="new-password"
               margin="normal"
-              {...register('password', {
+              {...register('senha', {
                 required: 'Senha é obrigatória',
                 minLength: {
                   value: 6,
                   message: 'Senha deve ter pelo menos 6 caracteres',
                 },
-                pattern: {
-                  value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-                  message: 'Senha deve conter pelo menos: 1 letra minúscula, 1 maiúscula e 1 número',
-                },
               })}
-              error={!!errors.password}
-              helperText={errors.password?.message}
+              error={!!errors.senha}
+              helperText={errors.senha?.message}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -252,7 +246,7 @@ const Register = () => {
               {...register('confirmPassword', {
                 required: 'Confirmação de senha é obrigatória',
                 validate: (value) =>
-                  value === password || 'Senhas não coincidem',
+                  value === senha || 'Senhas não coincidem',
               })}
               error={!!errors.confirmPassword}
               helperText={errors.confirmPassword?.message}
@@ -305,7 +299,6 @@ const Register = () => {
               {loading ? 'Criando conta...' : 'Criar Conta'}
             </Button>
 
-            {/* Login Link */}
             <Box sx={{ textAlign: 'center', mt: 3 }}>
               <Typography variant="body2" color="text.secondary">
                 Já tem uma conta?{' '}
@@ -322,7 +315,6 @@ const Register = () => {
               </Typography>
             </Box>
 
-            {/* Back to Home */}
             <Box sx={{ textAlign: 'center', mt: 2 }}>
               <Link
                 to="/"
@@ -343,3 +335,4 @@ const Register = () => {
 };
 
 export default Register;
+ 
