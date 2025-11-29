@@ -25,15 +25,15 @@ const MovieCard = ({ movie, genres = [] }) => {
   };
 
   const handlePlayClick = (e) => {
-    e.stopPropagation(); // Prevent card click
+    e.stopPropagation(); 
     navigate(`/movie/${movie.id}`);
   };
 
-  // Get genre names for the movie
+
   const getGenreNames = () => {
     if (!movie.genre_ids || !genres.length) return [];
     return movie.genre_ids
-      .slice(0, 2) // Show max 2 genres
+      .slice(0, 2) 
       .map(id => {
         const genre = genres.find(g => g.id === id);
         return genre ? genre.name : null;
@@ -67,7 +67,7 @@ const MovieCard = ({ movie, genres = [] }) => {
       }}
       onClick={handleCardClick}
     >
-      {/* Movie Poster */}
+
       <Box sx={{ position: 'relative', overflow: 'hidden' }}>
         <CardMedia
           className="card-media"
@@ -84,7 +84,6 @@ const MovieCard = ({ movie, genres = [] }) => {
           }}
         />
         
-        {/* Play Button Overlay */}
         <IconButton
           className="play-button"
           sx={{
@@ -108,7 +107,6 @@ const MovieCard = ({ movie, genres = [] }) => {
           <PlayIcon sx={{ fontSize: 30 }} />
         </IconButton>
 
-        {/* Rating Badge */}
         {movie.vote_average > 0 && (
           <Box
             sx={{
@@ -139,7 +137,6 @@ const MovieCard = ({ movie, genres = [] }) => {
         )}
       </Box>
 
-      {/* Movie Info */}
       <CardContent sx={{ flexGrow: 1, p: 2 }}>
         <Tooltip title={movie.title} arrow>
           <Typography
@@ -161,7 +158,6 @@ const MovieCard = ({ movie, genres = [] }) => {
           </Typography>
         </Tooltip>
 
-        {/* Release Date */}
         {movie.release_date && (
           <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
             <DateIcon sx={{ fontSize: 16, mr: 0.5, color: 'text.secondary' }} />
@@ -171,7 +167,6 @@ const MovieCard = ({ movie, genres = [] }) => {
           </Box>
         )}
 
-        {/* Genres */}
         {movieGenres.length > 0 && (
           <Box sx={{ display: 'flex', gap: 0.5, mb: 1, flexWrap: 'wrap' }}>
             {movieGenres.map((genre) => (
@@ -191,7 +186,6 @@ const MovieCard = ({ movie, genres = [] }) => {
           </Box>
         )}
 
-        {/* Overview */}
         {movie.overview && (
           <Typography
             variant="body2"
@@ -209,7 +203,6 @@ const MovieCard = ({ movie, genres = [] }) => {
           </Typography>
         )}
 
-        {/* Rating Stars */}
         {movie.vote_average > 0 && (
           <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
             <Rating

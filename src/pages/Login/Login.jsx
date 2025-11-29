@@ -40,7 +40,7 @@ const Login = () => {
     setError('');
 
     try {
-      await login(data.email, data.senha); // ✅ Já estava correto
+      await login(data.email, data.senha); 
       navigate('/');
     } catch (err) {
       console.error('Login error:', err);
@@ -205,7 +205,6 @@ const Login = () => {
               }}
             />
 
-            {/* ✅ CORRIGIDO: id="senha" */}
             <TextField
               fullWidth
               id="senha"

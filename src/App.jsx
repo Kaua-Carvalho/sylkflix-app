@@ -7,7 +7,7 @@ import { Box } from '@mui/material';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 
 import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer'; // ✅ Importar Footer
+import Footer from './components/Footer/Footer';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 
 import Home from './pages/Home/Home';
@@ -85,11 +85,11 @@ function AppContent() {
         minHeight: '100vh', 
         bgcolor: 'background.default',
         display: 'flex',
-        flexDirection: 'column', // ✅ Flex column para footer ir pro final
+        flexDirection: 'column', 
       }}
     >
       <Header />
-      <Box sx={{ pt: 8, flex: 1 }}> {/* ✅ flex: 1 empurra footer pra baixo */}
+      <Box sx={{ pt: 8, flex: 1 }}> 
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/movie/:id" element={<MovieDetails />} />
@@ -123,7 +123,7 @@ function AppContent() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Box>
-      <Footer /> {/* ✅ Footer adicionado aqui */}
+      <Footer /> 
     </Box>
   );
 }

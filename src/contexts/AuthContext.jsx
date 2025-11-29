@@ -16,7 +16,6 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Carregar usuário do localStorage ao iniciar
   useEffect(() => {
     const validateToken = async () => {
       const storedToken = localStorage.getItem('token');
@@ -24,11 +23,9 @@ export const AuthProvider = ({ children }) => {
       
       if (storedToken && storedUser) {
         try {
-          // Tenta fazer uma requisição para validar o token
           await api.get('/assistidos');
           setUser(JSON.parse(storedUser));
         } catch (error) {
-          // Token inválido ou usuário não existe mais
           localStorage.clear();
           setUser(null);
         }
@@ -40,13 +37,11 @@ export const AuthProvider = ({ children }) => {
     validateToken();
   }, []);
 
-  // Register user
   const register = async (nome, email, senha) => {
     try {
       const response = await authApi.register(nome, email, senha);
       const { token, id, nome: userName, email: userEmail } = response.data;
       
-      // Salvar token e usuário
       localStorage.setItem('token', token);
       const userData = { id, displayName: userName, email: userEmail, profilePicture: 'Profile0' };
       localStorage.setItem('user', JSON.stringify(userData));
@@ -58,13 +53,11 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Login user
 const login = async (email, senha) => {
   try {
     const response = await authApi.login(email, senha);
     const { token, id, nome: userName, email: userEmail, profilePicture } = response.data;
 
-    // Se o backend já retornar profilePicture, usa; senão fallback para Profile0
     const userData = { id, displayName: userName, email: userEmail, profilePicture: profilePicture || 'Profile0' };
 
     localStorage.setItem('token', token);
@@ -77,7 +70,6 @@ const login = async (email, senha) => {
   }
 };
 
-  // Logout user
   const logout = async () => {
     try {
       localStorage.removeItem('token');
@@ -88,7 +80,6 @@ const login = async (email, senha) => {
     }
   };
 
-  // ✅ NOVO: Atualizar dados do usuário no contexto
   const updateUserData = (userData) => {
     setUser(userData);
   };
@@ -99,7 +90,7 @@ const login = async (email, senha) => {
     register,
     login,
     logout,
-    updateUserData, // ✅ Adicionar ao contexto
+    updateUserData,
   };
 
   return (

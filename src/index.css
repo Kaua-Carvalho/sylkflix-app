@@ -90,7 +90,6 @@ img {
   color: #8a8a8a !important;
 }
 
-/* Seção da equipe */
 .team-section {
   display: flex;
   justify-content: center;
@@ -138,7 +137,6 @@ img {
   font-weight: 500;
 }
 
-/* Nomes com transição inicial/completo - VERSÃO SEQUENCIAL */
 .member-name {
   text-align: center;
   min-height: 1.2em;
@@ -147,7 +145,7 @@ img {
   justify-content: center;
   position: relative;
   width: 100%;
-  min-width: 120px; /* Garante espaço para o nome completo */
+  min-width: 120px; 
 }
 
 .member-name .initial,
@@ -177,20 +175,18 @@ img {
   color: #e0e0e0;
 }
 
-/* Estados de hover - transição sequencial */
 .team-member:hover .member-name .initial {
   opacity: 0;
   transform: translateX(-50%) scale(0.8);
-  transition-delay: 0s; /* A inicial some imediatamente */
+  transition-delay: 0s; 
 }
 
 .team-member:hover .member-name .full-name {
   opacity: 1;
   transform: translateX(-50%) scale(1);
-  transition-delay: 0.25s; /* O nome completo aparece depois de 0.25s */
+  transition-delay: 0.25s; 
 }
 
-/* Transição quando hover no footer inteiro */
 .footer-sylkflix:hover .member-name .initial {
   opacity: 0;
   transform: translateX(-50%) scale(0.8);
@@ -203,7 +199,6 @@ img {
   transition-delay: 0.25s;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
   .team-section {
     gap: 1.5rem;

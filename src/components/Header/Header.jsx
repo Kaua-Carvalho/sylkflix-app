@@ -21,7 +21,6 @@ import {
 import { styled } from '@mui/material/styles';
 import { useAuth } from '../../contexts/AuthContext';
 
-// Styled components
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -97,7 +96,6 @@ const Header = ({ onSearch }) => {
     const value = event.target.value;
     setSearchTerm(value);
     
-    // Call onSearch callback if provided and we're on the home page
     if (onSearch && location.pathname === '/') {
       onSearch(value);
     }
@@ -105,7 +103,6 @@ const Header = ({ onSearch }) => {
 
   const handleSearchSubmit = (event) => {
     if (event.key === 'Enter' && searchTerm.trim()) {
-      // If not on home page, navigate to home with search
       if (location.pathname !== '/') {
         navigate(`/?search=${encodeURIComponent(searchTerm)}`);
       }
@@ -140,7 +137,6 @@ const Header = ({ onSearch }) => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" sx={{ bgcolor: 'rgba(0, 0, 0, 0.9)', backdropFilter: 'blur(10px)' }}>
         <Toolbar>
-          {/* Logo */}
           <IconButton
             size="large"
             edge="start"
@@ -167,7 +163,6 @@ const Header = ({ onSearch }) => {
             SylkFlix
           </Typography>
 
-          {/* Search Box */}
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -183,7 +178,6 @@ const Header = ({ onSearch }) => {
 
           <Box sx={{ flexGrow: 1 }} />
 
-          {/* Auth Buttons */}
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             {user ? (
               <>

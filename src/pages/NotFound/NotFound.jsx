@@ -26,7 +26,6 @@ const NotFound = () => {
           justifyContent: 'center',
         }}
       >
-        {/* 404 Icon */}
         <MovieIcon
           sx={{
             fontSize: 120,
@@ -36,7 +35,6 @@ const NotFound = () => {
           }}
         />
 
-        {/* 404 Text */}
         <Typography
           variant="h1"
           sx={{
@@ -78,7 +76,6 @@ const NotFound = () => {
           Que tal voltar ao início e descobrir alguns filmes incríveis?
         </Typography>
 
-        {/* Action Buttons */}
         <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', justifyContent: 'center' }}>
           <Button
             variant="contained"
@@ -112,7 +109,6 @@ const NotFound = () => {
           </Button>
         </Box>
 
-        {/* Fun Movie Facts */}
         <Box
           sx={{
             mt: 6,

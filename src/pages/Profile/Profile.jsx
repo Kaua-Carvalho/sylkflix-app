@@ -43,11 +43,9 @@ const Profile = () => {
   const [loadingAssistidos, setLoadingAssistidos] = useState(false);
   const [error, setError] = useState('');
 
-  // Paginação
   const [currentPage, setCurrentPage] = useState(1);
   const filmesPerPage = 6;
 
-  // Dialogs
   const [editNameDialog, setEditNameDialog] = useState({ open: false });
   const [novoNome, setNovoNome] = useState('');
   const [loadingEditName, setLoadingEditName] = useState(false);
@@ -80,9 +78,6 @@ const Profile = () => {
     }
   };
 
-  // ===========================
-  // EDIÇÃO DE NOME
-  // ===========================
   const handleOpenEditName = () => {
     setNovoNome(user?.displayName || '');
     setEditNameDialog({ open: true });
@@ -100,7 +95,6 @@ const Profile = () => {
     try {
       const response = await authApi.updateNome(novoNome);
 
-      // Atualizar token e dados do usuário
       localStorage.setItem('token', response.data.token);
       const userData = {
         id: response.data.id,
@@ -122,9 +116,6 @@ const Profile = () => {
     }
   };
 
-  // ===========================
-  // DELEÇÃO DE FILME
-  // ===========================
   const handleOpenDeleteDialog = (filme) => setDeleteDialog({ open: true, filme });
   const handleCloseDeleteDialog = () => setDeleteDialog({ open: false, filme: null });
 
@@ -144,9 +135,6 @@ const Profile = () => {
     }
   };
 
-  // ===========================
-  // DELEÇÃO DE CONTA
-  // ===========================
   const handleOpenDeleteAccount = () => setDeleteAccountDialog(true);
   const handleCloseDeleteAccount = () => setDeleteAccountDialog(false);
 
@@ -169,9 +157,6 @@ const Profile = () => {
     }
   };
 
-  // ===========================
-  // AVALIAÇÃO
-  // ===========================
   const handleUpdateAvaliacao = async (id, novaAvaliacao) => {
     if (!novaAvaliacao) return;
     try {
@@ -198,9 +183,6 @@ const Profile = () => {
   const handleFilmeClick = (tmdbId) => navigate(`/movie/${tmdbId}`);
   const formatDate = (dateString) => dateString ? new Date(dateString).toLocaleDateString('pt-BR') : 'Não disponível';
 
-  // ===========================
-  // PAGINAÇÃO FILMES
-  // ===========================
   const indexOfLastFilme = currentPage * filmesPerPage;
   const indexOfFirstFilme = indexOfLastFilme - filmesPerPage;
   const currentFilmes = assistidos.slice(indexOfFirstFilme, indexOfLastFilme);
@@ -210,9 +192,6 @@ const Profile = () => {
     window.scrollTo({ top: 400, behavior: 'smooth' });
   };
 
-  // ===========================
-  // ALTERAR FOTO PERFIL
-  // ===========================
   const handleSelectProfilePicture = async (pic) => {
     try {
       await authApi.updateProfilePicture(pic);
@@ -227,7 +206,6 @@ const Profile = () => {
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
-      {/* Page Header */}
       <Box sx={{ mb: 5, textAlign: 'center' }}>
         <Typography
           variant="h3"
@@ -252,10 +230,8 @@ const Profile = () => {
       {error && <Alert severity="error" sx={{ mb: 3 }}>{error}</Alert>}
 
       <Grid container spacing={3}>
-        {/* Profile Info Card */}
         <Grid item xs={12} md={4}>
           <Paper elevation={3} sx={{ p: 3, textAlign: 'center', minHeight: 429 }}>
-            {/* Avatar com hover */}
             <Box sx={{ position: 'relative', width: 120, height: 120, mx: 'auto', mb: 2 }}>
               <Avatar
                 src={`/ProfilePictures/${user?.profilePicture || 'Profile0'}.jpg`}
@@ -290,7 +266,6 @@ const Profile = () => {
               </Box>
             </Box>
 
-            {/* Nome + Edit Icon */}
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', mb: 1 }}>
               <Typography variant="h6">{user?.displayName || 'Usuário'}</Typography>
               <IconButton
@@ -309,7 +284,6 @@ const Profile = () => {
 
             <Divider sx={{ my: 2 }} />
 
-            {/* Email */}
             <Box sx={{ textAlign: 'left', mb: 2 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                 <EmailIcon sx={{ mr: 1, color: 'text.secondary' }} />
@@ -320,7 +294,6 @@ const Profile = () => {
               </Box>
             </Box>
 
-            {/* Botões */}
             <Button
               fullWidth
               variant="outlined"
@@ -343,7 +316,6 @@ const Profile = () => {
             </Button>
           </Paper>
 
-          {/* Estatísticas */}
           <Card sx={{ mt: 3 }}>
             <CardContent>
               <Typography variant="h6" gutterBottom>Estatísticas</Typography>
@@ -363,7 +335,6 @@ const Profile = () => {
           </Card>
         </Grid>
 
-        {/* Filmes assistidos */}
         <Grid item xs={12} md={8}>
           <Paper elevation={3} sx={{ p: 3, minHeight: 580, maxHeight: 580, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
             <Typography variant="h5" gutterBottom fontWeight="600" sx={{ mb: 3 }}>Meus Filmes Assistidos ⭐</Typography>
@@ -440,9 +411,6 @@ const Profile = () => {
         </Grid>
       </Grid>
 
-      {/* =============================
-          Dialog Editar Nome
-          ============================= */}
         <Dialog
           open={editNameDialog.open}
           onClose={handleCloseEditName}
@@ -491,9 +459,6 @@ const Profile = () => {
           </DialogActions>
         </Dialog>
 
-      {/* =============================
-          Dialog Deletar Filme
-          ============================= */}
       <Dialog open={deleteDialog.open} onClose={handleCloseDeleteDialog}
       PaperProps={{ sx: { borderRadius: 3, background: 'linear-gradient(145deg, #1e1e1e 0%, #2a2a2a 100%)' } }}
       >
@@ -516,9 +481,6 @@ const Profile = () => {
         </DialogActions>
       </Dialog>
 
-      {/* =============================
-          Dialog Deletar Conta
-          ============================= */}
       <Dialog open={deleteAccountDialog} onClose={handleCloseDeleteAccount}
       PaperProps={{ sx: { borderRadius: 3, background: 'linear-gradient(145deg, #1e1e1e 0%, #2a2a2a 100%)' } }}>
         <DialogTitle>Deletar Conta</DialogTitle>
@@ -541,9 +503,6 @@ const Profile = () => {
         </DialogActions>
       </Dialog>
 
-      {/* =============================
-          Dialog Alterar Foto Perfil
-          ============================= */}
       <Dialog open={openProfileDialog} onClose={() => setOpenProfileDialog(false)}
       PaperProps={{ sx: { borderRadius: 3, background: 'linear-gradient(145deg, #1e1e1e 0%, #2a2a2a 100%)' } }}>
         <DialogTitle>Escolha uma nova foto de perfil</DialogTitle>

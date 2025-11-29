@@ -41,8 +41,7 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
-  // Estados de Assistidos
+
   const [isAssistido, setIsAssistido] = useState(false);
   const [assistidoId, setAssistidoId] = useState(null);
   const [showRatingDialog, setShowRatingDialog] = useState(false);
@@ -70,7 +69,6 @@ const MovieDetails = () => {
     }
   }, [id]);
 
-  // Verificar se o filme é assistido
   useEffect(() => {
     const checkAssistido = async () => {
       if (user && movie) {
@@ -115,7 +113,6 @@ const MovieDetails = () => {
       setIsAssistido(true);
       setAssistidoId(response.data.id);
       
-      // Animação de saída
       setTimeout(() => {
         setShowRatingDialog(false);
         setAvaliacao(0);
@@ -187,7 +184,6 @@ const MovieDetails = () => {
 
   return (
     <Box sx={{ minHeight: '100vh' }}>
-      {/* Hero Section with Backdrop */}
       <Box
         sx={{
           position: 'relative',
@@ -316,7 +312,6 @@ const MovieDetails = () => {
                 </Box>
               )}
 
-              {/* Botões de Ação */}
               <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                 {trailer && (
                   <Button
@@ -375,7 +370,6 @@ const MovieDetails = () => {
         </Container>
       </Box>
 
-      {/* Dialog de Avaliação - BONITO */}
       <Dialog 
   open={showRatingDialog} 
   onClose={() => setShowRatingDialog(false)}
@@ -385,8 +379,8 @@ const MovieDetails = () => {
   PaperProps={{
     sx: {
       borderRadius: 3,
-      minWidth: 450, // ✅ Largura fixa
-      maxWidth: 450, // ✅ Largura fixa
+      minWidth: 450,
+      maxWidth: 450,
       background: 'linear-gradient(145deg, #1e1e1e 0%, #2a2a2a 100%)',
     }
   }}
@@ -398,7 +392,6 @@ const MovieDetails = () => {
   </DialogTitle>
   <DialogContent>
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', py: 2 }}>
-      {/* Poster do Filme */}
       <Box
         component="img"
         src={getImageUrl(movie.poster_path, 'w200')}
@@ -412,7 +405,6 @@ const MovieDetails = () => {
         }}
       />
       
-      {/* ✅ Nome do filme com quebra de linha */}
       <Typography 
         variant="h6" 
         gutterBottom 
@@ -420,13 +412,13 @@ const MovieDetails = () => {
         sx={{ 
           mb: 2,
           px: 2,
-          minHeight: 60, // Garante espaço para 2 linhas
+          minHeight: 60, 
           alignItems: 'center',
           justifyContent: 'center',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           display: '-webkit-box',
-          WebkitLineClamp: 2, // Máximo 2 linhas
+          WebkitLineClamp: 2, 
           WebkitBoxOrient: 'vertical',
         }}
       >
@@ -452,7 +444,6 @@ const MovieDetails = () => {
         }}
       />
       
-      {/* ✅ REMOVIDO o texto "X estrelas" */}
     </Box>
   </DialogContent>
   <DialogActions sx={{ px: 3, pb: 3, gap: 1 }}>
@@ -481,19 +472,19 @@ const MovieDetails = () => {
       fullWidth
       sx={{
         background: avaliacao === 0 || loadingAssistido 
-          ? 'linear-gradient(45deg, #3a3a3a, #4a4a4a)' // ✅ Cinza quando desabilitado
+          ? 'linear-gradient(45deg, #3a3a3a, #4a4a4a)' 
           : 'linear-gradient(45deg, #e50914, #f40612)',
         color: avaliacao === 0 || loadingAssistido 
-          ? 'rgba(255, 255, 255, 0.3)' // ✅ Texto mais escuro quando desabilitado
+          ? 'rgba(255, 255, 255, 0.3)' 
           : 'white',
         cursor: avaliacao === 0 || loadingAssistido ? 'not-allowed' : 'pointer',
         '&:hover': {
           background: avaliacao === 0 || loadingAssistido
-            ? 'linear-gradient(45deg, #3a3a3a, #4a4a4a)' // ✅ Mantém cinza no hover
+            ? 'linear-gradient(45deg, #3a3a3a, #4a4a4a)' 
             : 'linear-gradient(45deg, #b8070f, #d8050e)',
         },
         '&.Mui-disabled': {
-          background: 'linear-gradient(45deg, #3a3a3a, #4a4a4a)', // ✅ Força estilo disabled
+          background: 'linear-gradient(45deg, #3a3a3a, #4a4a4a)',
           color: 'rgba(255, 255, 255, 0.3)',
         },
       }}
@@ -503,7 +494,6 @@ const MovieDetails = () => {
   </DialogActions>
 </Dialog>
 
-      {/* Resto do conteúdo (Sinopse, Elenco, etc) */}
       <Container maxWidth="lg" sx={{ py: 4 }}>
         <Grid container spacing={4}>
           <Grid item xs={12} md={8}>

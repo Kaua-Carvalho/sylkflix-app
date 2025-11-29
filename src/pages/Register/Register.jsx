@@ -132,7 +132,6 @@ const Register = () => {
           )}
 
           <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
-            {/* Nome com limite de 3 a 20 caracteres */}
             <TextField
               fullWidth
               id="nome"
